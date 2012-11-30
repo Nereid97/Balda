@@ -1,0 +1,31 @@
+D:\balda\balda\balda\bin\Debug\balda.exe
+D:\balda\balda\balda\bin\Debug\balda.pdb
+D:\balda\balda\balda\obj\x86\Debug\balda.Form1.resources
+D:\balda\balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
+D:\balda\balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+D:\balda\balda\balda\obj\x86\Debug\balda.exe
+D:\balda\balda\balda\obj\x86\Debug\balda.pdb
+D:\balda\balda\balda\obj\x86\Debug\balda.greeting.resources
+D:\balda\balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.exe
+C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.exe
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda\balda\bin\Debug\balda.exe
+C:\Users\Admin\Desktop\balda\balda\bin\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.Form1.resources
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.greeting.resources
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
+C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.exe
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.pdb
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.Form1.resources
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.greeting.resources
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.Properties.Resources.resources
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.exe
+C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.pdb
+C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.exe
+C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.pdb
