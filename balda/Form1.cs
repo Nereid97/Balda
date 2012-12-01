@@ -17,7 +17,26 @@ namespace balda
             InitializeComponent();
         }
         char[] first_word = new char[5];
-
+        string first_word1 = "";
+        bool[,] Priznak = new bool[5, 5];
+        int[][] PArr = new int[0][];//координаты букв выделенного слова
+        bool WasInitializated = false;
+        bool Bukva = false;
+        bool p = true;
+        bool pr = false;
+        bool first = true;
+        bool prr = true;//признак координат первой буквы
+        bool con = false;//признак существования введенной буквы в выделенном слове
+        int f = 0;//длинна массива PArr
+        int x = 0;
+        int y = 0;
+        int x1 = 0;
+        int y1 = 0;
+        int x_t = 0;
+        int y_t = 0;
+        int frag_p1;
+        int frag_p2;
+        int count = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             greeting f2 = new greeting();
@@ -59,7 +78,7 @@ namespace balda
                     size++;
                     char[] split_word = new char[line.Length];
                     for (int i = 0; i < line.Length; i++)
-                        split_word [i] = line[i];
+                        split_word[i] = line[i];
                     Array.Resize(ref mas, size);
                     Array.Resize(ref mas[j], 5);
                     for (int i = 0; i < line.Length; i++)
@@ -78,5 +97,100 @@ namespace balda
                 dataGridView1.Rows[2].Cells[i].Value = word[i].ToString();//заполнение ячейки
             }
         }
-     }
+
+        private void dataGridView1_MouseClick_1(object sender, MouseEventArgs e)
+        {
+            Point coordinate = new Point();
+            if (Bukva == true && dataGridView1[e.X / 50, e.Y / 50].Value != null)
+            {
+                coordinate.X = e.X / 50;
+                coordinate.Y = e.Y / 50;
+                if (p)
+                {
+                    f++;
+                    Array.Resize(ref PArr, f);
+                    f--;
+                    for (int i = 0; i < 1; i++)
+                        Array.Resize(ref PArr[f], 2);
+                    PArr[f][0] = e.Y / 50;
+                    PArr[f][1] = e.X / 50;
+                    f++;
+                    dataGridView1.Rows[coordinate.Y].Cells[coordinate.X].Style.BackColor = Color.Aqua;
+                    label5.Text += dataGridView1.Rows[coordinate.Y].Cells[coordinate.X].Value.ToString();
+                    x = coordinate.X;
+                    y = coordinate.Y;
+                    p = false;
+                }
+                else
+                {
+                    if (((Math.Abs(coordinate.X - x)) == 1 && (Math.Abs(coordinate.Y - y) == 0)) || ((Math.Abs(coordinate.X - x)) == 0 && (Math.Abs(coordinate.Y - y) == 1)))
+                    {
+                        f++;
+                        Array.Resize(ref PArr, f);
+                        f--;
+                        for (int i = 0; i < 1; i++)
+                            Array.Resize(ref PArr[f], 2);
+                        PArr[f][0] = e.Y / 50;
+                        PArr[f][1] = e.X / 50;
+                        f++;
+                        if (first == true)
+                            button3.Enabled = true;//первый игрок
+                        else
+                            button2.Enabled = true;//второй игрок
+                        x = coordinate.X;
+                        y = coordinate.Y;
+                        dataGridView1.Rows[coordinate.Y].Cells[coordinate.X].Style.BackColor = Color.Aqua;
+                        label5.Text += dataGridView1.Rows[coordinate.Y].Cells[coordinate.X].Value.ToString();
+
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)//выделить слово
+        {
+            Bukva = true;
+            dataGridView1.ReadOnly = true;
+            button1.Enabled = false;
+            button4.Enabled = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)//Отмена
+        {
+            button1.Enabled = true;
+            button4.Enabled = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.ClearSelection();
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            p = true;//признак выделения первой буквы
+            Bukva = false;
+            label5.Text = null;
+            prr = false;
+            PArr = new int[0][];
+            f = 0;
+            con = false;
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null &&
+         dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() != "")
+            {
+                x1 = e.RowIndex;
+                y1 = e.ColumnIndex;
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+                button1.Enabled = true;
+                dataGridView1.ReadOnly = true;
+                return;
+            }
+
+        }
+    }
 }
