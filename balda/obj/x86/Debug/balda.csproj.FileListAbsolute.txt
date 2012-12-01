@@ -29,3 +29,12 @@ C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.
 C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.pdb
 C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.exe
 C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.pdb
+C:\repo\Balda\balda\obj\x86\Debug\balda.exe
+C:\repo\Balda\balda\obj\x86\Debug\balda.pdb
+C:\repo\Balda\balda\bin\Debug\balda.exe
+C:\repo\Balda\balda\bin\Debug\balda.pdb
+C:\repo\Balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+C:\repo\Balda\balda\obj\x86\Debug\balda.Form1.resources
+C:\repo\Balda\balda\obj\x86\Debug\balda.greeting.resources
+C:\repo\Balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
+C:\repo\Balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache

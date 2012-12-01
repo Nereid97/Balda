@@ -192,5 +192,75 @@ namespace balda
             }
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string temp;
+            temp = label5.Text;
+            listBox2.Items.Add(label5.Text);
+            frag_p2 += temp.Length;
+            Frags2.Text = frag_p2.ToString();
+            label5.Text = null;
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            first = true;
+            button2.Enabled = false;
+            button4.Enabled = false;
+            dataGridView1.ReadOnly = false;
+            count++;
+            button1.Enabled = true;
+            button4.Enabled = false;
+            dataGridView1.ReadOnly = false;
+            dataGridView1.ClearSelection();
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            label5.Text = null;
+            dataGridView1.Rows[x_t].Cells[y_t].Value = null;
+            button2.Enabled = false;
+            button1.Enabled = false;
+            p = true;
+            prr = true;
+            PArr = new int[0][];
+            f = 0;
+            con = false;
+            Bukva = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string temp;
+            temp = label5.Text;
+            listBox1.Items.Add(label5.Text);
+            frag_p1 += temp.Length;
+            Frags1.Text = frag_p1.ToString();
+            label5.Text = null;
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            first = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            dataGridView1.ReadOnly = false;
+            button1.Enabled = true;
+            button4.Enabled = false;
+            dataGridView1.ReadOnly = false;
+            dataGridView1.ClearSelection();
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            label5.Text = null;
+            dataGridView1.Rows[x_t].Cells[y_t].Value = null;
+            button3.Enabled = false;
+            button1.Enabled = false;
+            p = true;
+            prr = true;
+            PArr = new int[0][];
+            f = 0;
+            con = false;
+            Bukva = false;
+        }
+    
     }
 }
