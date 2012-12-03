@@ -27,6 +27,7 @@ namespace balda
         bool first = true;
         bool prr = true;//признак координат первой буквы
         bool con = false;//признак существования введенной буквы в выделенном слове
+        bool exists = false;//признак существования слова в листбоксе
         int f = 0;//длинна массива PArr
         int x = 0;
         int y = 0;
@@ -36,7 +37,6 @@ namespace balda
         int y_t = 0;
         int frag_p1;
         int frag_p2;
-        int count = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             greeting f2 = new greeting();
@@ -62,6 +62,39 @@ namespace balda
                 for (int j = 0; j < 5; j++)
                     dataGridView1[i, j].Style.Font = new Font(FontFamily.GenericSansSerif, 27);//шрифт
             find_first_word(ref first_word, ref dataGridView1);//заносим слово из пяти букв в третюю строку dataGridView1
+            for (int i = 0; i < 5; i++)
+                first_word1 += first_word[i];
+            dataGridView1.Rows[4].ReadOnly = true;
+            dataGridView1.Rows[2].ReadOnly = true;
+            dataGridView1.Rows[0].ReadOnly = true;
+            WasInitializated = true;
+        }
+        public void exists_the_word(ListBox listbox1, ListBox listbox2, Label label, ref bool b)//Ф-ция проверки существования слова в листбоксе
+        {
+            if (label5.Text == first_word1)
+            {
+                b = true;
+                MessageBox.Show("Нельзя использовать первое слово!!!");
+            }
+            else
+            {
+                for (int i = 0; i < listBox1.Items.Count; i++)
+                {
+                    if (listbox1.Items[i].ToString() == label5.Text && b != true)
+                    {
+                        b = true;
+                        MessageBox.Show("Такое слово уже было использовано!!!");
+                        break;
+                    }
+                }
+                for (int i = 0; i < listBox2.Items.Count; i++)
+                    if (listbox2.Items[i].ToString() == label5.Text && b != true)
+                    {
+                        b = true;
+                        MessageBox.Show("Такое слово уже было использовано!!!");
+                        break;
+                    }
+            }
         }
 
         public void find_first_word(ref char[] word, ref DataGridView dataGridView)//Ф-ция записи первого слоа в dataGridView 
@@ -78,7 +111,7 @@ namespace balda
                     size++;
                     char[] split_word = new char[line.Length];
                     for (int i = 0; i < line.Length; i++)
-                        split_word [i] = line[i];
+                        split_word[i] = line[i];
                     Array.Resize(ref mas, size);
                     Array.Resize(ref mas[j], 5);
                     for (int i = 0; i < line.Length; i++)
@@ -95,7 +128,25 @@ namespace balda
             for (int i = 0; i < word.Length; i++)
             {
                 dataGridView1.Rows[2].Cells[i].Value = word[i].ToString();//заполнение ячейки
+                Priznak[2, i] = true;
             }
+        }
+        public void SearchString(string str1, ref bool found)//ф-ция поиска слова в библиотеке
+        {
+            string line;
+            found = false;
+            StreamReader st = new StreamReader("lib.RUS", Encoding.Default);
+            while ((line = st.ReadLine()) != null)
+            {
+                if (line == str1)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            st.Close();
+            if (found != true)
+                MessageBox.Show("Нет такого слова!");
         }
         public void check_letters_in_word(int[][] mas, int x_z, int y_z, ref bool pr)//ф-ция проверки вписаной буквы в слове
         {
@@ -116,22 +167,68 @@ namespace balda
                 }
             }
         }
-        public void SearchString(string str1, ref bool found)//ф-ция поиска слова в библиотеке
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            string line;
-            found = false;
-            StreamReader st = new StreamReader("lib.RUS", Encoding.Default);
-            while ((line = st.ReadLine()) != null)
+            if (WasInitializated)
             {
-                if (line == str1)
+                string temp;
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
-                    found = true;
-                    break;
+                    temp = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    if (temp.Length > 1)
+                    {
+                        temp = temp[0].ToString();
+                    }
+                    if (char.IsDigit(temp[0]))
+                    {
+                        dataGridView1[e.ColumnIndex, e.RowIndex].Value = null;
+                        return;
+                    }
+                    temp = temp.ToString().ToUpper();
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = temp.ToString();
+                    Priznak[e.RowIndex, e.ColumnIndex] = true;
+                    if (prr == true)
+                    {
+                        x_t = e.RowIndex;
+                        y_t = e.ColumnIndex;
+                        prr = false;
+                    }
                 }
+
             }
-            st.Close();
-            if (found != true)
-                MessageBox.Show("Нет такого слова!");
+        }
+        public void Open_cell(int x_o, int y_o)//Ф-ция открытия ячеек
+        {
+
+            if (x_o == 1)
+                dataGridView1.Rows[x_o - 1].Cells[y_o].ReadOnly = false;
+            if (x_o == 3)
+                dataGridView1.Rows[x_o + 1].Cells[y_o].ReadOnly = false;
+            if ((x_o == 0 && y_o == 0) || (x_o == 4 && y_o == 0))
+                dataGridView1.Rows[x_o].Cells[y_o + 1].ReadOnly = false;
+            if ((x_o == 0 && y_o == 4) || (x_o == 4 && y_o == 4))
+                dataGridView1.Rows[x_o].Cells[y_o - 1].ReadOnly = false;
+            if (y_o == 1 || y_o == 2 || y_o == 3)
+            {
+                dataGridView1.Rows[x_o].Cells[y_o - 1].ReadOnly = false;
+                dataGridView1.Rows[x_o].Cells[y_o + 1].ReadOnly = false;
+            }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null &&
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() != "")
+            {
+                x1 = e.RowIndex;
+                y1 = e.ColumnIndex;
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+                button1.Enabled = true;
+                dataGridView1.ReadOnly = true;
+                return;
+            }
+
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
@@ -182,38 +279,6 @@ namespace balda
                 }
             }
         }
-
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (WasInitializated)
-            {
-                string temp;
-                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-                {
-                    temp = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                    if (temp.Length > 1)
-                    {
-                        temp = temp[0].ToString();
-                    }
-                    if (char.IsDigit(temp[0]))
-                    {
-                        dataGridView1[e.ColumnIndex, e.RowIndex].Value = null;
-                        return;
-                    }
-                    temp = temp.ToString().ToUpper();
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = temp.ToString();
-                    Priznak[e.RowIndex, e.ColumnIndex] = true;
-                    if (prr == true)
-                    {
-                        x_t = e.RowIndex;
-                        y_t = e.ColumnIndex;
-                        prr = false;
-                    }
-                }
-
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)//выделить слово
         {
             Bukva = true;
@@ -222,7 +287,7 @@ namespace balda
             button4.Enabled = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)//Отмена
+        private void button4_Click(object sender, EventArgs e)//отмена
         {
             button1.Enabled = true;
             button4.Enabled = false;
@@ -239,22 +304,6 @@ namespace balda
             f = 0;
             con = false;
         }
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null &&
-         dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() != "")
-            {
-                x1 = e.RowIndex;
-                y1 = e.ColumnIndex;
-                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
-                button1.Enabled = true;
-                dataGridView1.ReadOnly = true;
-                return;
-            }
-            
-        }
-
         private void button2_Click(object sender, EventArgs e)//второй игрок добавляет слово
         {
             string temp;
@@ -265,6 +314,9 @@ namespace balda
                 SearchString(temp, ref pr);
                 if (pr == true)
                 {
+                    exists_the_word(listBox1, listBox2, label5, ref exists);
+                    if (exists == false)
+                    {
                         listBox2.Items.Add(label5.Text);
                         frag_p2 += temp.Length;
                         Frags2.Text = frag_p2.ToString();
@@ -276,7 +328,21 @@ namespace balda
                         button2.Enabled = false;
                         button4.Enabled = false;
                         dataGridView1.ReadOnly = false;
-                        count++;
+                    }
+                    else
+                    {
+                        label5.Text = null;
+                        label5.Text = null;
+                        button1.Enabled = false;//Выделить слово
+                        button3.Enabled = false;
+                        button4.Enabled = false;//отмена
+                        dataGridView1.ReadOnly = false;
+                        dataGridView1.Rows[x1].Cells[y1].Value = null;
+                        for (int i = 0; i < 5; i++)
+                            for (int j = 0; j < 5; j++)
+                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        button2.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -314,11 +380,16 @@ namespace balda
             f = 0;
             con = false;
             Bukva = false;
-
+            exists = false;
             dataGridView1.Rows[4].ReadOnly = true;
             dataGridView1.Rows[2].ReadOnly = true;
             dataGridView1.Rows[0].ReadOnly = true;
-
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    if (Priznak[i, j] == true)
+                    {
+                        Open_cell(i, j);
+                    }
             dataGridView1.Rows[2].ReadOnly = true;
         }
         private void button3_Click(object sender, EventArgs e)//первый игрок добавляет слово
@@ -331,18 +402,35 @@ namespace balda
                 SearchString(temp, ref pr);
                 if (pr == true)
                 {
-                    listBox1.Items.Add(label5.Text);
-                    frag_p1 += temp.Length;
-                    Frags1.Text = frag_p1.ToString();
-                    label5.Text = null;
-                    for (int i = 0; i < 5; i++)
-                        for (int j = 0; j < 5; j++)
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                    first = false;
-                    button3.Enabled = false;
-                    button4.Enabled = false;
-                    dataGridView1.ReadOnly = false;
-                    count++;
+                    exists_the_word(listBox1, listBox2, label5, ref exists);
+                    if (exists == false)
+                    {
+                        listBox1.Items.Add(label5.Text);
+                        frag_p1 += temp.Length;
+                        Frags1.Text = frag_p1.ToString();
+                        label5.Text = null;
+                        for (int i = 0; i < 5; i++)
+                            for (int j = 0; j < 5; j++)
+                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        first = false;
+                        button3.Enabled = false;
+                        button4.Enabled = false;
+                        dataGridView1.ReadOnly = false;
+                    }
+                    else
+                    {
+                        label5.Text = null;
+                        button1.Enabled = false;//Выделить слово
+                        button2.Enabled = false;
+                        button4.Enabled = false;//отмена
+                        dataGridView1.ReadOnly = false;
+                        dataGridView1.Rows[x1].Cells[y1].Value = null;
+                        dataGridView1.ClearSelection();
+                        for (int i = 0; i < 5; i++)
+                            for (int j = 0; j < 5; j++)
+                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        button3.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -380,9 +468,16 @@ namespace balda
             f = 0;
             con = false;
             Bukva = false;
+            exists = false;
             dataGridView1.Rows[4].ReadOnly = true;
             dataGridView1.Rows[2].ReadOnly = true;
             dataGridView1.Rows[0].ReadOnly = true;
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    if (Priznak[i, j] == true)
+                    {
+                        Open_cell(i, j);
+                    }
             dataGridView1.Rows[2].ReadOnly = true;
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -420,5 +515,6 @@ namespace balda
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-     }
+
+    }
 }
