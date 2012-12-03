@@ -2,11 +2,9 @@ D:\balda\balda\balda\bin\Debug\balda.exe
 D:\balda\balda\balda\bin\Debug\balda.pdb
 D:\balda\balda\balda\obj\x86\Debug\balda.Form1.resources
 D:\balda\balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
-D:\balda\balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
 D:\balda\balda\balda\obj\x86\Debug\balda.exe
 D:\balda\balda\balda\obj\x86\Debug\balda.pdb
 D:\balda\balda\balda\obj\x86\Debug\balda.greeting.resources
-D:\balda\balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
 C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.exe
 C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.pdb
 C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.exe
@@ -38,3 +36,6 @@ C:\repo\Balda\balda\obj\x86\Debug\balda.Form1.resources
 C:\repo\Balda\balda\obj\x86\Debug\balda.greeting.resources
 C:\repo\Balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
 C:\repo\Balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+D:\Balda\Balda\balda\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Balda\Balda\balda\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Balda\Balda\balda\obj\x86\Debug\GenerateResource.write.1.tlog

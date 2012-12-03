@@ -97,6 +97,25 @@ namespace balda
                 dataGridView1.Rows[2].Cells[i].Value = word[i].ToString();//заполнение ячейки
             }
         }
+        public void check_letters_in_word(int[][] mas, int x_z, int y_z, ref bool pr)//ф-ция проверки вписаной буквы в слове
+        {
+            pr = false;
+            int x1 = 0;
+            int y1 = 0;
+            for (int i = 0; i < mas.Length; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (j == 0) x1 = mas[i][j];
+                    if (j == 1) y1 = mas[i][j];
+                }
+                if (x_z == x1 && y_z == y1)
+                {
+                    pr = true;
+                    break;
+                }
+            }
+        }
         public void SearchString(string str1, ref bool found)//ф-ция поиска слова в библиотеке
         {
             string line;
@@ -166,7 +185,33 @@ namespace balda
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (WasInitializated)
+            {
+                string temp;
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    temp = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    if (temp.Length > 1)
+                    {
+                        temp = temp[0].ToString();
+                    }
+                    if (char.IsDigit(temp[0]))
+                    {
+                        dataGridView1[e.ColumnIndex, e.RowIndex].Value = null;
+                        return;
+                    }
+                    temp = temp.ToString().ToUpper();
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = temp.ToString();
+                    Priznak[e.RowIndex, e.ColumnIndex] = true;
+                    if (prr == true)
+                    {
+                        x_t = e.RowIndex;
+                        y_t = e.ColumnIndex;
+                        prr = false;
+                    }
+                }
 
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)//выделить слово
@@ -214,7 +259,9 @@ namespace balda
         {
             string temp;
             temp = label5.Text;
-
+            check_letters_in_word(PArr, x_t, y_t, ref con);//провряем существование буквы в слове
+            if (con == true)
+            {
                 SearchString(temp, ref pr);
                 if (pr == true)
                 {
@@ -245,7 +292,22 @@ namespace balda
                             dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
                     Priznak[x_t, y_t] = false;
                 }
-           
+            }
+            else
+            {
+                button1.Enabled = true;
+                button4.Enabled = false;
+                dataGridView1.ReadOnly = false;
+                dataGridView1.ClearSelection();
+                for (int i = 0; i < 5; i++)
+                    for (int j = 0; j < 5; j++)
+                        dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                label5.Text = null;
+                MessageBox.Show("Выделяемое cлово должно содержать введенную букву!");
+                dataGridView1.Rows[x_t].Cells[y_t].Value = null;
+                button2.Enabled = false;
+                button1.Enabled = false;
+            }
             p = true;
             prr = true;
             PArr = new int[0][];
@@ -263,6 +325,9 @@ namespace balda
         {
             string temp;
             temp = label5.Text;
+            check_letters_in_word(PArr, x_t, y_t, ref con);//провряем существование новой буквы в слове
+            if (con == true)
+            {
                 SearchString(temp, ref pr);
                 if (pr == true)
                 {
@@ -292,6 +357,23 @@ namespace balda
                             dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
                     Priznak[x_t, y_t] = false;
                 }
+            }
+            else
+            {
+                button1.Enabled = true;
+                button4.Enabled = false;
+                dataGridView1.ReadOnly = false;
+                dataGridView1.ClearSelection();
+                for (int i = 0; i < 5; i++)
+                    for (int j = 0; j < 5; j++)
+                        dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+
+                label5.Text = null;
+                MessageBox.Show("Выделяемое слово должно содержать введенную букву!");
+                dataGridView1.Rows[x_t].Cells[y_t].Value = null;
+                button3.Enabled = false;
+                button1.Enabled = false;
+            }
             p = true;
             prr = true;
             PArr = new int[0][];
