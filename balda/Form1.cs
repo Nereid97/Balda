@@ -78,7 +78,7 @@ namespace balda
                     size++;
                     char[] split_word = new char[line.Length];
                     for (int i = 0; i < line.Length; i++)
-                        split_word[i] = line[i];
+                        split_word [i] = line[i];
                     Array.Resize(ref mas, size);
                     Array.Resize(ref mas[j], 5);
                     for (int i = 0; i < line.Length; i++)
@@ -97,8 +97,25 @@ namespace balda
                 dataGridView1.Rows[2].Cells[i].Value = word[i].ToString();//заполнение ячейки
             }
         }
+        public void SearchString(string str1, ref bool found)//ф-ция поиска слова в библиотеке
+        {
+            string line;
+            found = false;
+            StreamReader st = new StreamReader("lib.RUS", Encoding.Default);
+            while ((line = st.ReadLine()) != null)
+            {
+                if (line == str1)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            st.Close();
+            if (found != true)
+                MessageBox.Show("Нет такого слова!");
+        }
 
-        private void dataGridView1_MouseClick_1(object sender, MouseEventArgs e)
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
             Point coordinate = new Point();
             if (Bukva == true && dataGridView1[e.X / 50, e.Y / 50].Value != null)
@@ -190,78 +207,102 @@ namespace balda
                 dataGridView1.ReadOnly = true;
                 return;
             }
-
+            
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//второй игрок добавляет слово
         {
             string temp;
             temp = label5.Text;
-            listBox2.Items.Add(label5.Text);
-            frag_p2 += temp.Length;
-            Frags2.Text = frag_p2.ToString();
-            label5.Text = null;
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-            first = true;
-            button2.Enabled = false;
-            button4.Enabled = false;
-            dataGridView1.ReadOnly = false;
-            count++;
-            button1.Enabled = true;
-            button4.Enabled = false;
-            dataGridView1.ReadOnly = false;
-            dataGridView1.ClearSelection();
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-            label5.Text = null;
-            dataGridView1.Rows[x_t].Cells[y_t].Value = null;
-            button2.Enabled = false;
-            button1.Enabled = false;
+
+                SearchString(temp, ref pr);
+                if (pr == true)
+                {
+                        listBox2.Items.Add(label5.Text);
+                        frag_p2 += temp.Length;
+                        Frags2.Text = frag_p2.ToString();
+                        label5.Text = null;
+                        for (int i = 0; i < 5; i++)
+                            for (int j = 0; j < 5; j++)
+                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        first = true;
+                        button2.Enabled = false;
+                        button4.Enabled = false;
+                        dataGridView1.ReadOnly = false;
+                        count++;
+                }
+                else
+                {
+                    label5.Text = null;
+                    button1.Enabled = false;//Выделить слово
+                    button2.Enabled = false;
+                    button4.Enabled = false;//отмена
+                    dataGridView1.ReadOnly = false;
+                    dataGridView1.Rows[x1].Cells[y1].Value = null;
+                    dataGridView1.ClearSelection();
+                    for (int i = 0; i < 5; i++)
+                        for (int j = 0; j < 5; j++)
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    Priznak[x_t, y_t] = false;
+                }
+           
             p = true;
             prr = true;
             PArr = new int[0][];
             f = 0;
             con = false;
             Bukva = false;
-        }
 
-        private void button3_Click(object sender, EventArgs e)
+            dataGridView1.Rows[4].ReadOnly = true;
+            dataGridView1.Rows[2].ReadOnly = true;
+            dataGridView1.Rows[0].ReadOnly = true;
+
+            dataGridView1.Rows[2].ReadOnly = true;
+        }
+        private void button3_Click(object sender, EventArgs e)//первый игрок добавляет слово
         {
             string temp;
             temp = label5.Text;
-            listBox1.Items.Add(label5.Text);
-            frag_p1 += temp.Length;
-            Frags1.Text = frag_p1.ToString();
-            label5.Text = null;
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-            first = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
-            dataGridView1.ReadOnly = false;
-            button1.Enabled = true;
-            button4.Enabled = false;
-            dataGridView1.ReadOnly = false;
-            dataGridView1.ClearSelection();
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-            label5.Text = null;
-            dataGridView1.Rows[x_t].Cells[y_t].Value = null;
-            button3.Enabled = false;
-            button1.Enabled = false;
+                SearchString(temp, ref pr);
+                if (pr == true)
+                {
+                    listBox1.Items.Add(label5.Text);
+                    frag_p1 += temp.Length;
+                    Frags1.Text = frag_p1.ToString();
+                    label5.Text = null;
+                    for (int i = 0; i < 5; i++)
+                        for (int j = 0; j < 5; j++)
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    first = false;
+                    button3.Enabled = false;
+                    button4.Enabled = false;
+                    dataGridView1.ReadOnly = false;
+                    count++;
+                }
+                else
+                {
+                    label5.Text = null;
+                    button1.Enabled = false;//Выделить слово
+                    button3.Enabled = false;
+                    button4.Enabled = false;//отмена
+                    dataGridView1.ReadOnly = false;
+                    dataGridView1.Rows[x1].Cells[y1].Value = null;
+                    for (int i = 0; i < 5; i++)
+                        for (int j = 0; j < 5; j++)
+                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    Priznak[x_t, y_t] = false;
+                }
             p = true;
             prr = true;
             PArr = new int[0][];
             f = 0;
             con = false;
             Bukva = false;
+            dataGridView1.Rows[4].ReadOnly = true;
+            dataGridView1.Rows[2].ReadOnly = true;
+            dataGridView1.Rows[0].ReadOnly = true;
+            dataGridView1.Rows[2].ReadOnly = true;
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
@@ -297,6 +338,5 @@ namespace balda
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-    
-    }
+     }
 }
