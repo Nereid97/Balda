@@ -261,6 +261,42 @@ namespace balda
             con = false;
             Bukva = false;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
+
+        private void dataGridView1_CellErrorTextChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
+                dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
+        }
     
     }
 }
