@@ -19,7 +19,7 @@ namespace balda
         char[] first_word = new char[5];
         string first_word1 = "";
         bool[,] Priznak = new bool[5, 5];
-        int[][] PArr = new int[0][];//координаты букв выделенного слова
+        int [][] PArr = new int [0][];//координаты букв выделенного слова
         bool WasInitializated = false;
         bool Bukva = false;
         bool p = true;
@@ -37,6 +37,7 @@ namespace balda
         int y_t = 0;
         int frag_p1;
         int frag_p2;
+        int count = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             greeting f2 = new greeting();
@@ -63,7 +64,7 @@ namespace balda
                     dataGridView1[i, j].Style.Font = new Font(FontFamily.GenericSansSerif, 27);//шрифт
             find_first_word(ref first_word, ref dataGridView1);//заносим слово из пяти букв в третюю строку dataGridView1
             for (int i = 0; i < 5; i++)
-                first_word1 += first_word[i];
+                first_word1+= first_word[i];
             dataGridView1.Rows[4].ReadOnly = true;
             dataGridView1.Rows[2].ReadOnly = true;
             dataGridView1.Rows[0].ReadOnly = true;
@@ -111,7 +112,7 @@ namespace balda
                     size++;
                     char[] split_word = new char[line.Length];
                     for (int i = 0; i < line.Length; i++)
-                        split_word[i] = line[i];
+                        split_word [i] = line[i];
                     Array.Resize(ref mas, size);
                     Array.Resize(ref mas[j], 5);
                     for (int i = 0; i < line.Length; i++)
@@ -176,15 +177,15 @@ namespace balda
                 if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     temp = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                    if (temp.Length > 1)
+                     if (temp.Length > 1)
                     {
                         temp = temp[0].ToString();
                     }
-                    if (char.IsDigit(temp[0]))
-                    {
-                        dataGridView1[e.ColumnIndex, e.RowIndex].Value = null;
-                        return;
-                    }
+                        if (char.IsDigit(temp[0]))
+                        {
+                            dataGridView1[e.ColumnIndex, e.RowIndex].Value = null;
+                            return;
+                        }
                     temp = temp.ToString().ToUpper();
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = temp.ToString();
                     Priznak[e.RowIndex, e.ColumnIndex] = true;
@@ -195,7 +196,7 @@ namespace balda
                         prr = false;
                     }
                 }
-
+                
             }
         }
         public void Open_cell(int x_o, int y_o)//Ф-ция открытия ячеек
@@ -228,13 +229,13 @@ namespace balda
                 dataGridView1.ReadOnly = true;
                 return;
             }
-
+            
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
             Point coordinate = new Point();
-            if (Bukva == true && dataGridView1[e.X / 50, e.Y / 50].Value != null)
+            if (Bukva == true && dataGridView1[e.X/50,e.Y/50].Value!=null)
             {
                 coordinate.X = e.X / 50;
                 coordinate.Y = e.Y / 50;
@@ -295,7 +296,7 @@ namespace balda
             dataGridView1.ClearSelection();
             for (int i = 0; i < 5; i++)
                 for (int j = 0; j < 5; j++)
-                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
             p = true;//признак выделения первой буквы
             Bukva = false;
             label5.Text = null;
@@ -311,53 +312,54 @@ namespace balda
             check_letters_in_word(PArr, x_t, y_t, ref con);//провряем существование буквы в слове
             if (con == true)
             {
-                SearchString(temp, ref pr);
-                if (pr == true)
-                {
-                    exists_the_word(listBox1, listBox2, label5, ref exists);
-                    if (exists == false)
+                    SearchString(temp, ref pr);
+                    if (pr == true)
                     {
-                        listBox2.Items.Add(label5.Text);
-                        frag_p2 += temp.Length;
-                        Frags2.Text = frag_p2.ToString();
-                        label5.Text = null;
-                        for (int i = 0; i < 5; i++)
-                            for (int j = 0; j < 5; j++)
-                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                        first = true;
-                        button2.Enabled = false;
-                        button4.Enabled = false;
-                        dataGridView1.ReadOnly = false;
+                         exists_the_word(listBox1, listBox2, label5, ref exists);
+                         if (exists == false)
+                         {
+                             listBox2.Items.Add(label5.Text);
+                             frag_p2 += temp.Length;
+                             Frags2.Text = frag_p2.ToString();
+                             label5.Text = null;
+                             for (int i = 0; i < 5; i++)
+                                 for (int j = 0; j < 5; j++)
+                                     dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                             first = true;
+                             button2.Enabled = false;
+                             button4.Enabled = false;
+                             dataGridView1.ReadOnly = false;
+                             count++;
+                         }
+                         else
+                         {
+                             label5.Text = null;
+                             label5.Text = null;
+                             button1.Enabled = false;//Выделить слово
+                             button3.Enabled = false;
+                             button4.Enabled = false;//отмена
+                             dataGridView1.ReadOnly = false;
+                             dataGridView1.Rows[x1].Cells[y1].Value = null;
+                             for (int i = 0; i < 5; i++)
+                                 for (int j = 0; j < 5; j++)
+                                     dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                             button2.Enabled = false;
+                         }
                     }
                     else
                     {
                         label5.Text = null;
-                        label5.Text = null;
                         button1.Enabled = false;//Выделить слово
-                        button3.Enabled = false;
+                        button2.Enabled = false;
                         button4.Enabled = false;//отмена
                         dataGridView1.ReadOnly = false;
                         dataGridView1.Rows[x1].Cells[y1].Value = null;
+                        dataGridView1.ClearSelection();
                         for (int i = 0; i < 5; i++)
                             for (int j = 0; j < 5; j++)
                                 dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                        button2.Enabled = false;
+                        Priznak[x_t, y_t] = false;
                     }
-                }
-                else
-                {
-                    label5.Text = null;
-                    button1.Enabled = false;//Выделить слово
-                    button2.Enabled = false;
-                    button4.Enabled = false;//отмена
-                    dataGridView1.ReadOnly = false;
-                    dataGridView1.Rows[x1].Cells[y1].Value = null;
-                    dataGridView1.ClearSelection();
-                    for (int i = 0; i < 5; i++)
-                        for (int j = 0; j < 5; j++)
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                    Priznak[x_t, y_t] = false;
-                }
             }
             else
             {
@@ -391,60 +393,62 @@ namespace balda
                         Open_cell(i, j);
                     }
             dataGridView1.Rows[2].ReadOnly = true;
+            end_game(count, label2);
         }
         private void button3_Click(object sender, EventArgs e)//первый игрок добавляет слово
         {
             string temp;
             temp = label5.Text;
-            check_letters_in_word(PArr, x_t, y_t, ref con);//провряем существование новой буквы в слове
+            check_letters_in_word(PArr, x_t, y_t,ref con);//провряем существование новой буквы в слове
             if (con == true)
             {
-                SearchString(temp, ref pr);
-                if (pr == true)
-                {
-                    exists_the_word(listBox1, listBox2, label5, ref exists);
-                    if (exists == false)
+                    SearchString(temp, ref pr);
+                    if (pr == true)
                     {
-                        listBox1.Items.Add(label5.Text);
-                        frag_p1 += temp.Length;
-                        Frags1.Text = frag_p1.ToString();
-                        label5.Text = null;
-                        for (int i = 0; i < 5; i++)
-                            for (int j = 0; j < 5; j++)
-                                dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                        first = false;
-                        button3.Enabled = false;
-                        button4.Enabled = false;
-                        dataGridView1.ReadOnly = false;
+                        exists_the_word(listBox1, listBox2, label5, ref exists);
+                        if (exists == false)
+                        {
+                            listBox1.Items.Add(label5.Text);
+                            frag_p1 += temp.Length;
+                            Frags1.Text = frag_p1.ToString();
+                            label5.Text = null;
+                            for (int i = 0; i < 5; i++)
+                                for (int j = 0; j < 5; j++)
+                                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                            first = false;
+                            button3.Enabled = false;
+                            button4.Enabled = false;
+                            dataGridView1.ReadOnly = false;
+                            count++;
+                        }
+                        else
+                        {
+                            label5.Text = null;
+                            button1.Enabled = false;//Выделить слово
+                            button2.Enabled = false;
+                            button4.Enabled = false;//отмена
+                            dataGridView1.ReadOnly = false;
+                            dataGridView1.Rows[x1].Cells[y1].Value = null;
+                            dataGridView1.ClearSelection();
+                            for (int i = 0; i < 5; i++)
+                                for (int j = 0; j < 5; j++)
+                                    dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
+                            button3.Enabled = false;
+                        }
                     }
                     else
                     {
                         label5.Text = null;
                         button1.Enabled = false;//Выделить слово
-                        button2.Enabled = false;
+                        button3.Enabled = false;
                         button4.Enabled = false;//отмена
                         dataGridView1.ReadOnly = false;
                         dataGridView1.Rows[x1].Cells[y1].Value = null;
-                        dataGridView1.ClearSelection();
                         for (int i = 0; i < 5; i++)
                             for (int j = 0; j < 5; j++)
                                 dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                        button3.Enabled = false;
+                        Priznak[x_t, y_t] = false;
                     }
-                }
-                else
-                {
-                    label5.Text = null;
-                    button1.Enabled = false;//Выделить слово
-                    button3.Enabled = false;
-                    button4.Enabled = false;//отмена
-                    dataGridView1.ReadOnly = false;
-                    dataGridView1.Rows[x1].Cells[y1].Value = null;
-                    for (int i = 0; i < 5; i++)
-                        for (int j = 0; j < 5; j++)
-                            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.White;
-                    Priznak[x_t, y_t] = false;
-                }
             }
             else
             {
@@ -479,42 +483,45 @@ namespace balda
                         Open_cell(i, j);
                     }
             dataGridView1.Rows[2].ReadOnly = true;
+            end_game(count, label1);
+        }
+        public void end_game(int count,Label label)
+        {
+            if (count == 25)
+            {
+                MessageBox.Show("Выиграл " + label.Text);
+                dataGridView1.ReadOnly = true;
+            }
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
         private void dataGridView1_CellErrorTextChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1[e.ColumnIndex, e.RowIndex].Value != null)
                 dataGridView1[e.ColumnIndex, e.RowIndex].ReadOnly = true;
         }
-
-    }
+     }
 }

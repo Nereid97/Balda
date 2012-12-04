@@ -2,9 +2,11 @@ D:\balda\balda\balda\bin\Debug\balda.exe
 D:\balda\balda\balda\bin\Debug\balda.pdb
 D:\balda\balda\balda\obj\x86\Debug\balda.Form1.resources
 D:\balda\balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
+D:\balda\balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
 D:\balda\balda\balda\obj\x86\Debug\balda.exe
 D:\balda\balda\balda\obj\x86\Debug\balda.pdb
 D:\balda\balda\balda\obj\x86\Debug\balda.greeting.resources
+D:\balda\balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
 C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.exe
 C:\Documents and Settings\leon\Рабочий стол\ntk\balda\balda\obj\x86\Debug\balda.pdb
 C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.exe
@@ -16,26 +18,31 @@ C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.Form1.resources
 C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.greeting.resources
 C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
 C:\Users\Admin\Desktop\balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.exe
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.pdb
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.Form1.resources
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.greeting.resources
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.Properties.Resources.resources
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.exe
-C:\Users\Admin\Desktop\Балда (Начало игры)\balda\bin\Debug\balda.pdb
-C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.exe
-C:\Documents and Settings\leon\Рабочий стол\ntk\Балда (Начало игры)\balda\obj\x86\Debug\balda.pdb
-C:\repo\Balda\balda\obj\x86\Debug\balda.exe
-C:\repo\Balda\balda\obj\x86\Debug\balda.pdb
-C:\repo\Balda\balda\bin\Debug\balda.exe
-C:\repo\Balda\balda\bin\Debug\balda.pdb
-C:\repo\Balda\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
-C:\repo\Balda\balda\obj\x86\Debug\balda.Form1.resources
-C:\repo\Balda\balda\obj\x86\Debug\balda.greeting.resources
-C:\repo\Balda\balda\obj\x86\Debug\balda.Properties.Resources.resources
-C:\repo\Balda\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
-D:\Balda\Balda\balda\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\Balda\Balda\balda\obj\x86\Debug\GenerateResource.read.1.tlog
-D:\Balda\Balda\balda\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.exe
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda(Основа)\balda\bin\Debug\balda.exe
+C:\Users\Admin\Desktop\balda(Основа)\balda\bin\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.Form1.resources
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.greeting.resources
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.Properties.Resources.resources
+C:\Users\Admin\Desktop\balda(Основа)\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.exe
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.pdb
+D:\balda(Рабочая)\balda\bin\Debug\balda.exe
+D:\balda(Рабочая)\balda\bin\Debug\balda.pdb
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.csprojResolveAssemblyReference.cache
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.Form1.resources
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.greeting.resources
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.Properties.Resources.resources
+D:\balda(Рабочая)\balda\obj\x86\Debug\balda.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\balda.exe
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\bin\Debug\balda.exe
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\bin\Debug\balda.pdb
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\balda.Form1.resources
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\balda.greeting.resources
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\balda.Properties.Resources.resources
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Admin\Desktop\balda(Рабочая)\balda\obj\x86\Debug\GenerateResource.write.1.tlog

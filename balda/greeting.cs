@@ -38,10 +38,19 @@ namespace balda
             if (e.KeyCode == Keys.Enter)
             {
                 str2 = textBox2.Text;
-                textBox2.Enabled = false;
-                button1.Enabled = true;
+                if (str == str2)
+                {
+                    MessageBox.Show("Такое имя уже использовалось!!!");
+                    textBox2.Text = null;
+                }
+                else
+                {
+                    textBox2.Enabled = false;
+                    button1.Enabled = true;
+                }
             }
         }
+
 
     }
 }
